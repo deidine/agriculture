@@ -1,0 +1,200 @@
+import java.util.Date;
+
+public class EntrepotAchatDTO {
+    private Long id;
+    private String categorieProduit;
+    private String nomProduit;
+    private int quantite;
+    private String unite;
+    private Date dateAchat;
+    private Date dateExpiration;
+    private String utilisation;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCategorieProduit() {
+        return categorieProduit;
+    }
+
+    public void setCategorieProduit(String categorieProduit) {
+        this.categorieProduit = categorieProduit;
+    }
+
+    public String getNomProduit() {
+        return nomProduit;
+    }
+
+    public void setNomProduit(String nomProduit) {
+        this.nomProduit = nomProduit;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public String getUnite() {
+        return unite;
+    }
+
+    public void setUnite(String unite) {
+        this.unite = unite;
+    }
+
+    public Date getDateAchat() {
+        return dateAchat;
+    }
+
+    public void setDateAchat(Date dateAchat) {
+        this.dateAchat = dateAchat;
+    }
+
+    public Date getDateExpiration() {
+        return dateExpiration;
+    }
+
+    public void setDateExpiration(Date dateExpiration) {
+        this.dateExpiration = dateExpiration;
+    }
+
+    public String getUtilisation() {
+        return utilisation;
+    }
+
+    public void setUtilisation(String utilisation) {
+        this.utilisation = utilisation;
+    }
+}
+import java.util.List;
+
+public class EntrepotVenteDTO {
+    private Long id;
+    private String typeProduit;
+    private String imageProduit;
+    private String unite;
+    private int quantite;
+    private List<MatiereEntrepotVenteDTO> matieres;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTypeProduit() {
+        return typeProduit;
+    }
+
+    public void setTypeProduit(String typeProduit) {
+        this.typeProduit = typeProduit;
+    }
+
+    public String getImageProduit() {
+        return imageProduit;
+    }
+
+    public void setImageProduit(String imageProduit) {
+        this.imageProduit = imageProduit;
+    }
+
+    public String getUnite() {
+        return unite;
+    }
+
+    public void setUnite(String unite) {
+        this.unite = unite;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public List<MatiereEntrepotVenteDTO> getMatieres() {
+        return matieres;
+    }
+
+    public void setMatieres(List<MatiereEntrepotVenteDTO> matieres) {
+        this.matieres = matieres;
+    }
+}
+
+public class MatiereEntrepotVenteDTO {
+    private Long id;
+    private Long idEntrepotVente;
+    private String matiere;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getIdEntrepotVente() {
+        return idEntrepotVente;
+    }
+
+    public void setIdEntrepotVente(Long idEntrepotVente) {
+        this.idEntrepotVente = idEntrepotVente;
+    }
+
+    public String getMatiere() {
+        return matiere;
+    }
+
+    public void setMatiere(String matiere) {
+        this.matiere = matiere;
+    }
+}
+
+
+-------------
+create for category tables
+
+CREATE TABLE EntrepotAchat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    categorie_produit VARCHAR(255) NOT NULL,
+    nom_produit VARCHAR(255) NOT NULL,
+    quantite INT NOT NULL,
+    unite VARCHAR(50) NOT NULL,
+    date_achat DATE NOT NULL,
+    date_expiration DATE,
+    utilisation TEXT
+);
+
+CREATE TABLE EntrepotVente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type_produit VARCHAR(255) NOT NULL,
+    image_produit VARCHAR(255),
+    unite VARCHAR(50) NOT NULL,
+    quantite INT NOT NULL
+);
+
+CREATE TABLE MatieresEntrepotVente (
+    id_entrepot_vente INT NOT NULL,
+    matiere VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_entrepot_vente) REFERENCES EntrepotVente(id)
+);
+
+when you insert to EntrepotAchat just shouse from the existing product and then complete the auther 
+fomration 
+and also crate categries tables 
