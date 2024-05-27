@@ -5,11 +5,6 @@
  */
 package greeen.utils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
- import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
@@ -20,14 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * columnas de la tabla, para aplicarlos a la tabla.
  */
 public class TableData extends DefaultTableModel {
-
-    // ATTRIBUTES
-    private static Connection conn = null;
-
-    PreparedStatement prepStatement = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
-    private static PreparedStatement preparedStatement;
+ 
 
     Date tanggal = new Date();
  
@@ -38,37 +26,7 @@ public class TableData extends DefaultTableModel {
     public boolean isCellEditable(int row, int colum) {
         return false;
     }
-
-    // public static Integer countRecords(String table) {
-
-    //     ResultSet result = null;
-    //     try {
-    //         try {
-    //             conn = new ConnectionFactory().getConn();
-    //             // statement = conn.createStatement();
-    //         } catch (Exception ex) {
-    //             ex.printStackTrace();
-    //         }
-
-    //         preparedStatement = conn.prepareStatement("SELECT COUNT(*) FROM " + table);
-    //         result = preparedStatement.executeQuery();
-
-    //         if (result.next()) {
-    //             return result.getInt(1);
-    //         } else {
-    //             return null;
-    //         }
-
-    //     } catch (SQLException e) {
-    //         throw new RuntimeException(e);
-    //     } finally {
-    //         // close(con);
-    //         // close(preparedStatement);
-    //     }
-    // }
-
-    
-    
+ 
     static public DefaultTableModel generateTable(Object[][] rows, Object[] column) {
 
         return new DefaultTableModel(

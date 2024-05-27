@@ -43,6 +43,7 @@
         "libs/servlet-api-2.5.jar",
         "libs/slf4j-api-2.0.9.jar",
         "libs/spring-boot-starter-web-3.0.10.jar",
-        "libs/txw2-3.0.2.jar"
+        "libs/txw2-3.0.2.jar",
+        "libs/jcalendar-1.4.jar"
     ]
 }

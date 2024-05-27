@@ -83,12 +83,12 @@ public class ProductDAO {
     }
 
     // Method to fetch product code from database based on product name
-    public String getProdCode(String prodName) {
+    public Product getProdCode(String prodName) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             Product product = (Product) session.createQuery("from Product where productname = :name")
                     .setParameter("name", prodName)
                     .uniqueResult();
-            return product != null ? product.getProductcode() : null;
+            return product != null ? product  : null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

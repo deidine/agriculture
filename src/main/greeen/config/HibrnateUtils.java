@@ -7,6 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import greeen.models.Category;
+import greeen.models.InputPurchaseProduct;
+import greeen.models.InputSaleProduct;
 import greeen.models.Product;
 import greeen.models.User;
 import jakarta.persistence.PersistenceException;
@@ -25,7 +28,9 @@ public class HibrnateUtils {
             Configuration configuration = new Configuration().configure(cfgFile);
             configuration.addAnnotatedClass(Product.class);
             configuration.addAnnotatedClass(User.class);
-            
+            configuration.addAnnotatedClass(InputSaleProduct.class);
+            configuration.addAnnotatedClass(InputPurchaseProduct.class);
+            configuration.addAnnotatedClass(Category.class);
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties());
             sessionFactory = configuration.buildSessionFactory(builder.build());
