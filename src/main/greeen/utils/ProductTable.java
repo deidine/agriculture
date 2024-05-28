@@ -28,7 +28,8 @@ public class ProductTable extends DefaultTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        System.out.println("deidineidne"+this.getColumns().length);
+        return  this.getColumns().length ;
     }
 
     @Override

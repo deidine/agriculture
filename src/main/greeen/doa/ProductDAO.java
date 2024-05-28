@@ -212,4 +212,23 @@ public class ProductDAO {
         }
     }
 
+    public void update(int newQuntyt,String code) {
+    
+        Transaction transaction = null;
+        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Product product = session.get(Product.class, code );
+             System.out.println("deidine"+product.getQuantity());
+             product.setQuantity(newQuntyt);
+             System.out.println("deidinew"+product.getQuantity());
+                session.update(product);
+              transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
 }

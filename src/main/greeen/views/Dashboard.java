@@ -19,6 +19,7 @@ import greeen.doa.InputPurchaseProductDAO;
 import greeen.doa.ProductDAO;
 import greeen.utils.ProductTable;
 import greeen.utils.PurcahseTable;
+import greeen.utils.SalleTable;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Dashboard extends javax.swing.JFrame {
     int limitPagination = 20;
     
     PurcahseTable prchtb = new PurcahseTable();
+    SalleTable salltb = new SalleTable();
 
     ProductTable prtbl = new ProductTable();
     
@@ -97,6 +99,20 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jScrollTabelTransaksi7 = new javax.swing.JScrollPane();
         tabelIPurchase = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        serchSalle = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        nextPurchase1 = new javax.swing.JButton();
+        prevSalle = new javax.swing.JButton();
+        deleteSalle = new javax.swing.JButton();
+        addSalle = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        jPanel14 = new javax.swing.JPanel();
+        jScrollTabelTransaksi8 = new javax.swing.JScrollPane();
+        tabelSalle = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -384,7 +400,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollTabelTransaksi7, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addComponent(jScrollTabelTransaksi7, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -400,13 +416,156 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Les Commende", jPanel2);
+        jTabbedPane1.addTab("Stock d'achts", jPanel2);
+
+        serchSalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                serchSalleKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        jLabel3.setText("Chercher");
+
+        nextPurchase1.setBackground(new java.awt.Color(255, 255, 204));
+        nextPurchase1.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        nextPurchase1.setForeground(new java.awt.Color(51, 51, 0));
+        nextPurchase1.setText("Next");
+        nextPurchase1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(102, 102, 0), new java.awt.Color(153, 153, 0)));
+        nextPurchase1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextPurchase1ActionPerformed(evt);
+            }
+        });
+
+        prevSalle.setBackground(new java.awt.Color(255, 255, 204));
+        prevSalle.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        prevSalle.setForeground(new java.awt.Color(51, 51, 0));
+        prevSalle.setText("Prev");
+        prevSalle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(102, 102, 0), new java.awt.Color(153, 153, 0)));
+        prevSalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevSalleActionPerformed(evt);
+            }
+        });
+
+        deleteSalle.setBackground(new java.awt.Color(255, 51, 51));
+        deleteSalle.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        deleteSalle.setForeground(new java.awt.Color(51, 51, 0));
+        deleteSalle.setText("suprimer");
+        deleteSalle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(102, 102, 0), new java.awt.Color(153, 153, 0)));
+        deleteSalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteSalleActionPerformed(evt);
+            }
+        });
+
+        addSalle.setBackground(new java.awt.Color(51, 255, 51));
+        addSalle.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        addSalle.setForeground(new java.awt.Color(51, 0, 51));
+        addSalle.setText("Ajouter");
+        addSalle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addSalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSalleActionPerformed(evt);
+            }
+        });
+
+        jSeparator6.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator7.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator13.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(addSalle)
+                .addGap(32, 32, 32)
+                .addComponent(deleteSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(prevSalle)
+                .addGap(31, 31, 31)
+                .addComponent(nextPurchase1)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(serchSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(serchSalle)
+                            .addComponent(jLabel3))
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteSalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(prevSalle)
+                            .addComponent(nextPurchase1)))))
+        );
+
+        tabelSalle.setOpaque(true);
+        tabelSalle.setRowHeight(30);
+        tabelSalle.getTableHeader().setReorderingAllowed(false);
+        jScrollTabelTransaksi8.setViewportView(tabelSalle);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollTabelTransaksi8)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollTabelTransaksi8, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Stock de Vente", jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -580,6 +739,27 @@ public class Dashboard extends javax.swing.JFrame {
         new PurchaseForm();
         refrech();        // TODO add your handling code here:
     }//GEN-LAST:event_addPurchaseActionPerformed
+
+    private void serchSalleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_serchSalleKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serchSalleKeyReleased
+
+    private void nextPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPurchase1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextPurchase1ActionPerformed
+
+    private void prevSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevSalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prevSalleActionPerformed
+
+    private void deleteSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteSalleActionPerformed
+
+    private void addSalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSalleActionPerformed
+        new SalleForm();
+        refrech();  
+    }//GEN-LAST:event_addSalleActionPerformed
 private String getCureentTime() {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -595,6 +775,7 @@ private String getCureentTime() {
         // product table
         tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination));
         tabelIPurchase.setModel(prchtb.generateTable(limitPagination, counterPagination));
+        tabelSalle.setModel(salltb.generateTable(limitPagination, counterPagination));
  
     }
 
@@ -630,34 +811,48 @@ private String getCureentTime() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProduit;
     private javax.swing.JButton addPurchase;
+    private javax.swing.JButton addSalle;
     private javax.swing.JButton deleteProduit;
     private javax.swing.JButton deletePurchase;
+    private javax.swing.JButton deleteSalle;
     private javax.swing.JButton editProduit;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollTabelTransaksi7;
+    private javax.swing.JScrollPane jScrollTabelTransaksi8;
     private javax.swing.JScrollPane jScrollTabelTransaksi9;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton nextProduct;
     private javax.swing.JButton nextPurchase;
+    private javax.swing.JButton nextPurchase1;
     private javax.swing.JButton prevProduct;
     private javax.swing.JButton prevPurchase;
+    private javax.swing.JButton prevSalle;
     private javax.swing.JTextField serchProduct;
     private javax.swing.JTextField serchPurchase;
+    private javax.swing.JTextField serchSalle;
     private javax.swing.JTable tabelIPurchase;
     private javax.swing.JTable tabelProduit;
+    private javax.swing.JTable tabelSalle;
     // End of variables declaration//GEN-END:variables
 }

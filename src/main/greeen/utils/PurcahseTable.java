@@ -25,7 +25,7 @@ public class PurcahseTable extends DefaultTableModel {
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return  this.getColumns().length ;
     }
 
     @Override

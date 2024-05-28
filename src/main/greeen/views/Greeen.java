@@ -279,12 +279,12 @@ public class Greeen extends javax.swing.JFrame {
         String username = txtFieldUsername.getText();
         String password = txtPass.getText();
         userRole = (String) userType.getSelectedItem();
-
-        new Dashboard(username).setVisible(true);
+        new FristPage(username).setVisible(true);
+      dispose();
 //         if (new ConnectionFactory().checkLogin(username, password, userRole)) {
 //             inTime = LocalDateTime.now();
 //             userDTO.setInTime(String.valueOf(inTime));
-//             dispose();
+//            
 //             if ("ADMINISTRATOR".equals(userRole)) {
 //             } else if ("EMPLOYEE".equals(userRole)) {
 //                 //             new Dashboard(username, userRole, userDTO);

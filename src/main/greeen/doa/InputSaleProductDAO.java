@@ -1,9 +1,12 @@
 package greeen.doa;
 
 import greeen.config.HibrnateUtils;
+import greeen.models.InputPurchaseProduct;
 import greeen.models.InputSaleProduct; 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import java.util.List;
 
 public class InputSaleProductDAO {
@@ -58,6 +61,17 @@ public class InputSaleProductDAO {
         }
     }
 
+        public List<InputSaleProduct> getQueryResult(int limit, int offset) {
+        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+            Query<InputSaleProduct> query = session.createQuery("FROM InputSaleProduct", InputSaleProduct.class);
+            query.setFirstResult(offset);
+            query.setMaxResults(limit);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     // Delete an InputSaleProduct by ID
     public void deleteById(Long id) {
         Transaction transaction = null;

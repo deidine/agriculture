@@ -1,0 +1,23 @@
+LOCALFLEXIBLE
+Email : cheigeurdeidine@gmail.com
+Addresse : NKTT
+Teléphone : 49619609
+
+
+
+
+---------------------------------------------
+il vaut pas changer ses information
+selument vous dnas le cas ou est vous sur ou 
+voulez changez les information du votre
+entreprise
+les information sous cette line ne sont pas importent
+les numero du line
+1)name of the company
+2)email
+3)phone number
+4)address
+
+
+si l'un de ses information n'exite plus ou ne veux pas aparatere 
+dans to facture tu peux suprimer en lessent le line vide
