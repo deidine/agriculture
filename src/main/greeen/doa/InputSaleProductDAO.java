@@ -61,10 +61,12 @@ public class InputSaleProductDAO {
         }
     }
 
-        public List<InputSaleProduct> getQueryResult(int limit, int offset) {
+        public List<InputSaleProduct> getQueryResult(int limit, int offset,String type) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
-            Query<InputSaleProduct> query = session.createQuery("FROM InputSaleProduct", InputSaleProduct.class);
+            Query<InputSaleProduct> query = session.createQuery("FROM InputSaleProduct  where type = :type", InputSaleProduct.class);
+            query.setParameter("type", type);
             query.setFirstResult(offset);
+
             query.setMaxResults(limit);
             return query.list();
         } catch (Exception e) {

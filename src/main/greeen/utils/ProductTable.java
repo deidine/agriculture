@@ -42,7 +42,7 @@ public class ProductTable extends DefaultTableModel {
     }
 
     public String[] getColumns() {
-        return new String[] { "Code_Produit", "Nom_Produit", "Prix_Achat", "quentite", "Prix_Vende", "Marque" };
+        return new String[] { "Code_Produit", "Nom_Produit",   "Categorie" };
     }
 
     public List<Product> getData(int limit, int offset) {
@@ -65,11 +65,8 @@ public class ProductTable extends DefaultTableModel {
         for (int i = 0; i < rowCount; i++) {
             Product product = productList.get(i);
             ROWS[i][0] = product.getProductcode();
-            ROWS[i][1] = product.getProductname();
-            ROWS[i][2] = product.getCostprice();
-            ROWS[i][3] = product.getQuantity();
-            ROWS[i][4] = product.getSellprice();
-            ROWS[i][5] = product.getBrand();
+            ROWS[i][1] = product.getProductname(); 
+            ROWS[i][2] = product.getCategorie() ;
         }
         return ROWS;
     }
@@ -85,10 +82,8 @@ public class ProductTable extends DefaultTableModel {
             Product product = productList.get(i);
             ROWS[i][0] = product.getProductcode();
             ROWS[i][1] = product.getProductname();
-            ROWS[i][2] = product.getCostprice();
-            ROWS[i][3] = product.getQuantity();
-            ROWS[i][4] = product.getSellprice();
-            ROWS[i][5] = product.getBrand();
+            ROWS[i][2] = product.getCategorie() ;
+            
         }
         return ROWS;
     }

@@ -62,12 +62,11 @@ public final class FristPage extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnSalle2 = new javax.swing.JButton();
-        btndeleteAll = new javax.swing.JButton();
-        btnModifier = new javax.swing.JButton();
-        btnDeleteItem = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         btnCaisse = new javax.swing.JButton();
+        btnSalle3 = new javax.swing.JButton();
+        btnSalle4 = new javax.swing.JButton();
         jMenuBarInfoPengembang = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuLogout = new javax.swing.JMenuItem();
@@ -85,51 +84,12 @@ public final class FristPage extends javax.swing.JFrame {
         btnSalle2.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         btnSalle2.setForeground(new java.awt.Color(255, 255, 255));
         // btnSalle2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
-        btnSalle2.setText("fermer caisse");
+        btnSalle2.setText("Stock Achat");
         btnSalle2.setBorderPainted(false);
         btnSalle2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalle2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalle2ActionPerformed(evt);
-            }
-        });
-
-        btndeleteAll.setBackground(new java.awt.Color(255, 0, 0));
-        btndeleteAll.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
-        btndeleteAll.setForeground(new java.awt.Color(255, 255, 255));
-        // btndeleteAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/recycle-bin.png"))); // NOI18N
-        btndeleteAll.setText("effacer tous");
-        btndeleteAll.setBorderPainted(false);
-        btndeleteAll.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btndeleteAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndeleteAllActionPerformed(evt);
-            }
-        });
-
-        btnModifier.setBackground(new java.awt.Color(204, 153, 0));
-        btnModifier.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
-        btnModifier.setForeground(new java.awt.Color(255, 255, 255));
-        // btnModifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/update-arrow.png"))); // NOI18N
-        btnModifier.setText("Modifiee");
-        btnModifier.setBorderPainted(false);
-        btnModifier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnModifier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifierActionPerformed(evt);
-            }
-        });
-
-        btnDeleteItem.setBackground(new java.awt.Color(153, 153, 0));
-        btnDeleteItem.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
-        btnDeleteItem.setForeground(new java.awt.Color(255, 255, 255));
-        // btnDeleteItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/removeproduct.png"))); // NOI18N
-        btnDeleteItem.setText("Suprmer un ligne");
-        btnDeleteItem.setBorderPainted(false);
-        btnDeleteItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDeleteItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteItemActionPerformed(evt);
             }
         });
 
@@ -167,32 +127,64 @@ public final class FristPage extends javax.swing.JFrame {
             }
         });
 
+        btnSalle3.setBackground(new java.awt.Color(153, 0, 153));
+        btnSalle3.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        btnSalle3.setForeground(new java.awt.Color(255, 255, 255));
+        // btnSalle3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
+        btnSalle3.setText("Stock de vente");
+        btnSalle3.setBorderPainted(false);
+        btnSalle3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalle3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalle3ActionPerformed(evt);
+            }
+        });
+
+        btnSalle4.setBackground(new java.awt.Color(153, 0, 153));
+        btnSalle4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        btnSalle4.setForeground(new java.awt.Color(255, 255, 255));
+        // btnSalle4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
+        btnSalle4.setText("fermer caisse");
+        btnSalle4.setBorderPainted(false);
+        btnSalle4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalle4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalle4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnSalle2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(169, 169, 169)
                 .addComponent(btnCaisse, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDeleteItem)
-                .addGap(238, 238, 238))
+                .addComponent(btnSalle2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(btnSalle3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(326, 326, 326))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(btnSalle4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1042, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btndeleteAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-            .addComponent(btnModifier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnDeleteItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnSalle2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnSalle2, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addComponent(btnSalle3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
             .addComponent(btnCaisse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(btnSalle4, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -278,19 +270,6 @@ public final class FristPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifierActionPerformed
-       
-    }//GEN-LAST:event_btnModifierActionPerformed
-
-    private void btndeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteAllActionPerformed
-  
-    }//GEN-LAST:event_btndeleteAllActionPerformed
-
-    private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
-
- 
-    }//GEN-LAST:event_btnDeleteItemActionPerformed
-
     private void btnCaisseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaisseActionPerformed
    new Dashboard(username).setVisible(true);      
 // TODO add your handling code here:
@@ -312,15 +291,24 @@ public final class FristPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_infoAplikasiActionPerformed
 
+    private void btnSalle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalle3ActionPerformed
+        new PurchaseStock(username).setVisible(true);      
+
+    }//GEN-LAST:event_btnSalle3ActionPerformed
+
+    private void btnSalle4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalle4ActionPerformed
+        new SalleStcok(username).setVisible(true);      
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalle4ActionPerformed
+
     
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCaisse;
-    private javax.swing.JButton btnDeleteItem;
-    private javax.swing.JButton btnModifier;
     private javax.swing.JButton btnSalle2;
-    private javax.swing.JButton btndeleteAll;
+    private javax.swing.JButton btnSalle3;
+    private javax.swing.JButton btnSalle4;
     private javax.swing.JMenuItem infoAplikasi;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

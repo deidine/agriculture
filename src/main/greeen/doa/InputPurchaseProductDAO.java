@@ -81,9 +81,10 @@ public class InputPurchaseProductDAO {
         }
     }
 
-        public List<InputPurchaseProduct> getQueryResult(int limit, int offset) {
+        public List<InputPurchaseProduct> getQueryResult(int limit, int offset,String type) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
-            Query<InputPurchaseProduct> query = session.createQuery("FROM InputPurchaseProduct", InputPurchaseProduct.class);
+            Query<InputPurchaseProduct> query = session.createQuery("FROM InputPurchaseProduct  where type = :type", InputPurchaseProduct.class);
+            query.setParameter("type", type);
             query.setFirstResult(offset);
             query.setMaxResults(limit);
             return query.list();

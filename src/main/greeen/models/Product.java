@@ -15,10 +15,9 @@ public class Product {
     @Id
     private String productcode;
 
-    private String productname;
-    private double costprice;
-    private double sellprice;
-    private String brand;
-    private int quantity;
+    private String productname; 
+    private String categorie;
+    private int quantityPurchase;
+    private int quantitySalle;
 
 }

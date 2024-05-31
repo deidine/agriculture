@@ -36,15 +36,15 @@ public class ProductDAO {
     }
 
     // Method to fetch product cost from database
-    public Double getProdCost(String prodCode) {
-        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
-            Product product = session.get(Product.class, prodCode);
-            return product != null ? product.getCostprice() : null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    // public Double getProdCost(String prodCode) {
+    //     try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+    //         Product product = session.get(Product.class, prodCode);
+    //         return product != null ? product.getCostprice() : null;
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         return null;
+    //     }
+    // }
 
     public List<Product> getProductSearch2(String text) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
@@ -72,15 +72,15 @@ public class ProductDAO {
     }
 
     // Method to fetch product sell price from database
-    public Double getProdSell(String prodCode) {
-        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
-            Product product = session.get(Product.class, prodCode);
-            return product != null ? product.getSellprice() : null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    // public Double getProdSell(String prodCode) {
+    //     try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+    //         Product product = session.get(Product.class, prodCode);
+    //         return product != null ? product.getSellprice() : null;
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         return null;
+    //     }
+    // }
 
     // Method to fetch product code from database based on product name
     public Product getProdCode(String prodName) {
@@ -156,7 +156,7 @@ public class ProductDAO {
     public boolean validQuantity(int quantity, String code) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             Product product = session.get(Product.class, code);
-            return product != null && product.getQuantity() >= quantity;
+            return product != null && product.getQuantityPurchase() >= quantity;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -167,7 +167,7 @@ public class ProductDAO {
     public int currentStock(String code) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             Product product = session.get(Product.class, code);
-            return product != null ? product.getQuantity() : 0;
+            return product != null ? product.getQuantityPurchase() : 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -212,16 +212,30 @@ public class ProductDAO {
         }
     }
 
-    public void update(int newQuntyt,String code) {
+    public void updatePurchaseQuantite(int newQuntyt,String code) {
     
         Transaction transaction = null;
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Product product = session.get(Product.class, code );
-             System.out.println("deidine"+product.getQuantity());
-             product.setQuantity(newQuntyt);
-             System.out.println("deidinew"+product.getQuantity());
-                session.update(product);
+              product.setQuantityPurchase(newQuntyt);
+                 session.update(product);
+              transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    public void updateSalleQuantity(int newQuntyt,String code) {
+    
+        Transaction transaction = null;
+        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Product product = session.get(Product.class, code );
+              product.setQuantitySalle(newQuntyt);
+                 session.update(product);
               transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

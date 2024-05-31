@@ -9,9 +9,9 @@ import java.util.List;
 public class SalleTable extends DefaultTableModel {
 
     private InputSaleProductDAO salleDAO = new InputSaleProductDAO();
-
-    public SalleTable() {
-        // Default constructor
+String type;
+    public SalleTable(String type) {
+     this.type=type;   // Default constructor
     }
 
     public int countRecords() {
@@ -41,7 +41,7 @@ public class SalleTable extends DefaultTableModel {
     }
 
     public List<InputSaleProduct> getData(int limit, int offset) {
-        return salleDAO.getQueryResult(limit, offset);
+        return salleDAO.getQueryResult(limit, offset,type);
     }
 
     public int getRowsCount() {

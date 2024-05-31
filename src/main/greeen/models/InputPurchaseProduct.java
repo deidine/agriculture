@@ -28,12 +28,13 @@ public class InputPurchaseProduct {
     private Integer quantite;  
     @Column(name = "unite", nullable = false)
     private String unite;
-
+    @Column(name = "type", nullable = false)
+    private String type;
     @Column(name = "date_achat", nullable = false)
     private LocalDate dateAchat;  
     @Column(name = "date_expiration")
     private LocalDate dateExpiration;  
-    @Column(name = "utilisation")
+    @Column(name = "utilisation",length = 122222)
     private String utilisation;
 
  

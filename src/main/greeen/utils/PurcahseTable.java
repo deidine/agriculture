@@ -9,9 +9,9 @@ import java.util.List;
 public class PurcahseTable extends DefaultTableModel {
 
     private InputPurchaseProductDAO purchaseDAO = new InputPurchaseProductDAO();
-
-    public PurcahseTable() {
-        // Default constructor
+String type;
+    public PurcahseTable(String type) {
+this.type=type;
     }
 
     public int countRecords() {
@@ -19,7 +19,15 @@ public class PurcahseTable extends DefaultTableModel {
     }
 
     public DefaultTableModel generateTable(int limit, int offset) {
-        System.out.println("deidine");
+        System.out.println("deidine type"+type);
+        // if(this.type.equals("achat")){
+
+           
+        // }else{
+        //     return TableData.generateTable(this.getRows(limit, offset), this.getColumns());
+
+        // }
+        
         return TableData.generateTable(this.getRows(limit, offset), this.getColumns());
     }
 
@@ -40,7 +48,7 @@ public class PurcahseTable extends DefaultTableModel {
     }
 
     public List<InputPurchaseProduct> getData(int limit, int offset) {
-        return purchaseDAO.getQueryResult(limit, offset);
+        return purchaseDAO.getQueryResult(limit, offset,type);
     }
 
     public int getRowsCount() {
@@ -70,4 +78,5 @@ public class PurcahseTable extends DefaultTableModel {
 
         return rows;
     }
+
 }

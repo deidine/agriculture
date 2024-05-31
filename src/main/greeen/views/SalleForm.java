@@ -40,11 +40,11 @@ public class SalleForm extends javax.swing.JDialog {
     /**
      * Creates new form PurchaseForm
      */
-    public SalleForm() {
-
+        String type;
+    public SalleForm( String type) {
+  this.type=  type;
         initComponents();
-        productTable();
-        categoryTable();
+        productTable(); 
 
         // setAlwaysOnTop(true);
         // setUndecorated(true);
@@ -69,10 +69,7 @@ public class SalleForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelHeader = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        uniteProdText = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -87,34 +84,22 @@ public class SalleForm extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         categoryText = new javax.swing.JTextField();
+        jComboBUnite = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProduct = new javax.swing.JTable();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         btnEntrer = new javax.swing.JButton();
         labelHeader1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableCategories = new javax.swing.JTable();
         labelHeader2 = new javax.swing.JLabel();
-        jDesktopPane2 = new javax.swing.JDesktopPane();
-        btnEntrer1 = new javax.swing.JButton();
-        searchSupll = new javax.swing.JTextField();
         searchProduct = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         clearButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
-        labelHeader.setFont(new java.awt.Font("Engravers MT", 1, 18)); // NOI18N
-        labelHeader.setText("Table  Categories");
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        uniteProdText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
-        jLabel10.setText("unite");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -253,20 +238,24 @@ public class SalleForm extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "G", "Litre","M","Cm" }));
+
+        jLabel11.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jLabel11.setText("unite");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(uniteProdText))
-                .addGap(41, 41, 41))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBUnite, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,15 +263,15 @@ public class SalleForm extends javax.swing.JDialog {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(uniteProdText, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBUnite, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -343,58 +332,8 @@ public class SalleForm extends javax.swing.JDialog {
         labelHeader1.setFont(new java.awt.Font("Engravers MT", 1, 18)); // NOI18N
         labelHeader1.setText("Nouvelle quqntite Produit");
 
-        jTableCategories.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTableCategories);
-
         labelHeader2.setFont(new java.awt.Font("Engravers MT", 1, 18)); // NOI18N
         labelHeader2.setText("Table  Produit");
-
-        jDesktopPane2.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnEntrer1.setBackground(new java.awt.Color(102, 102, 0));
-        btnEntrer1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEntrer1.setForeground(new java.awt.Color(255, 255, 102));
-        btnEntrer1.setText(">");
-        btnEntrer1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrer1ActionPerformed(evt);
-            }
-        });
-
-        jDesktopPane2.setLayer(btnEntrer1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
-        jDesktopPane2.setLayout(jDesktopPane2Layout);
-        jDesktopPane2Layout.setHorizontalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEntrer1)
-                .addContainerGap())
-        );
-        jDesktopPane2Layout.setVerticalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(btnEntrer1)
-                .addGap(25, 25, 25))
-        );
-
-        searchSupll.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchSupllKeyReleased(evt);
-            }
-        });
 
         searchProduct.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -403,8 +342,6 @@ public class SalleForm extends javax.swing.JDialog {
         });
 
         jLabel1.setText("Chercher");
-
-        jLabel9.setText("Cherch");
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -464,19 +401,8 @@ public class SalleForm extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelHeader2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(searchSupll, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(searchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -508,9 +434,7 @@ public class SalleForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(168, 168, 168)
-                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -520,15 +444,8 @@ public class SalleForm extends javax.swing.JDialog {
                             .addComponent(searchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelHeader)
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchSupll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -556,12 +473,20 @@ public class SalleForm extends javax.swing.JDialog {
             
             salleProduct.setQuantite(Integer.parseInt(quantityText.getText()));
             salleProduct.setImageProduit(image.getText());
-            salleProduct.setUnite(uniteProdText.getText());
-            int newQunt = Integer.parseInt(productQtnt.getText())- Integer.parseInt(quantityText.getText());
-             
+          salleProduct.setUnite(jComboBUnite.getSelectedItem().toString());
+         
+            int newQunt = 0;
+            if( type.equals("vente")){
+               newQunt= Integer.parseInt(productQtnt.getText())- Integer.parseInt(quantityText.getText());
+               salleProduct.setType("vente"); 
+
+            }else{
+               newQunt= Integer.parseInt(productQtnt.getText())+ Integer.parseInt(quantityText.getText());
+               salleProduct.setType("input"); 
+            }
 
             salleProductdoa.save(salleProduct);
-            prdDao.update(newQunt,  codeText.getText()) ;
+            prdDao.updateSalleQuantity(newQunt,  codeText.getText()) ;
             this.inisialiser();
             this.productTable();
           
@@ -597,6 +522,8 @@ public class SalleForm extends javax.swing.JDialog {
                     2).toString());
             nameText.setText(listProds.getValueAt(jTableProduct.getSelectedRow(),
                     1).toString());
+         categoryText.setText(listProds.getValueAt(jTableProduct.getSelectedRow(),
+                    3).toString());
 
         } else {
             JOptionPane.showMessageDialog(null, "il veut selectionner un produit dans le   table");
@@ -618,13 +545,7 @@ public class SalleForm extends javax.swing.JDialog {
     }// GEN-LAST:event_dateTextActionPerformed
 
     private void btnEntrer1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEntrer1ActionPerformed
-        DefaultTableModel listSupp = (DefaultTableModel) jTableCategories.getModel();
-        if (jTableCategories.getSelectedRow() >= 0) {
-            categoryText.setText(listSupp.getValueAt(jTableCategories.getSelectedRow(), 0).toString());
-        } else {
-            JOptionPane.showMessageDialog(null, "il veut selectionner un fournisseur dans le table");
-
-        }
+       
         // TODO add your handling code here:
     }// GEN-LAST:event_btnEntrer1ActionPerformed
 
@@ -633,19 +554,13 @@ public class SalleForm extends javax.swing.JDialog {
 
         sarchProductTable(txt); // TODO add your handling code here:
     }// GEN-LAST:event_searchProductKeyReleased
-
-    private void searchSupllKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_searchSupllKeyReleased
-        String txt = searchSupll.getText();
-        sarchCategoriesTable(txt);// TODO add your handling code here:
-    }// GEN-LAST:event_searchSupllKeyReleased
-
+ 
     public void inisialiser() {
         categoryText.setText("");
         nameText.setText("");
         // useDateText.setText("");
         codeText.setText("");
-        image.setText("");
-        uniteProdText.setText("");
+        image.setText(""); 
         quantityText.setText("");
         // dateText.setDate( );
     }
@@ -677,13 +592,13 @@ public class SalleForm extends javax.swing.JDialog {
             laporan.addColumn("code produit");
             laporan.addColumn("nom produit");
             laporan.addColumn("quentite");
-
+laporan.addColumn("categories");
             laporan.getDataVector().removeAllElements();
             laporan.fireTableDataChanged();
             laporan.setRowCount(0);
             for (Product product : allProd) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantity() });
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() });
             }
 
             jTableProduct.setModel(laporan);
@@ -692,29 +607,7 @@ public class SalleForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "cek Kembali " + e + "");
         }
     }
-
-    private void categoryTable() {
-        try {
-            CategoryDAO catDoa = new CategoryDAO();
-
-            DefaultTableModel laporan = new DefaultTableModel();
-            laporan.addColumn("nom du categorie");
-
-            laporan.getDataVector().removeAllElements();
-            laporan.fireTableDataChanged();
-            laporan.setRowCount(0);
-            List<Category> allCategories = catDoa.getAll();
-            for (Category category : allCategories) {
-                laporan.addRow(new Object[] { category.getName() });
-            }
-
-            jTableCategories.setModel(laporan);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "cek Kembali " + e + "");
-        }
-    }
-
+ 
     private void sarchProductTable(String txt) {
         try {
             ProductDAO prDoa = new ProductDAO();
@@ -731,11 +624,12 @@ public class SalleForm extends javax.swing.JDialog {
             laporan.addColumn("Code Produit");
             laporan.addColumn("Nom Produit");
             laporan.addColumn("Quantité");
+   laporan.addColumn("categories");
 
             // Add filtered products to the model
             for (Product product : filteredProducts) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantity() });
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() });
             }
 
             jTableProduct.setModel(laporan);
@@ -743,51 +637,22 @@ public class SalleForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage());
         }
     }
-
-    private void sarchCategoriesTable(String txt) {
-        try {
-            CategoryDAO catDoa = new CategoryDAO();
-
-            DefaultTableModel laporan = new DefaultTableModel();
-            laporan.addColumn("nom du categorie");
-
-            laporan.getDataVector().removeAllElements();
-            laporan.fireTableDataChanged();
-            laporan.setRowCount(0);
-            List<Category> allCategories = catDoa.getAll();
-
-            List<Category> filteredProducts = allCategories.stream()
-                    .filter(product -> product.getName().toLowerCase().contains(txt.toLowerCase()))
-                    .collect(Collectors.toList());
-            // Add filtered products to the model
-            for (Category product : filteredProducts) {
-                laporan.addRow(new Object[] { product.getName() });
-            }
-
-            jTableCategories.setModel(laporan);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "cek Kembali " + e + "");
-        }
-    }
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton addButton;
     private javax.swing.JButton btnEntrer;
-    private javax.swing.JButton btnEntrer1;
     private javax.swing.JTextField categoryText;
     private javax.swing.JButton clearButton;
     private javax.swing.JTextField codeText;
     private javax.swing.JTextArea image;
+    private javax.swing.JComboBox<String> jComboBUnite;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -795,18 +660,13 @@ public class SalleForm extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTableCategories;
     private javax.swing.JTable jTableProduct;
-    private javax.swing.JLabel labelHeader;
     private javax.swing.JLabel labelHeader1;
     private javax.swing.JLabel labelHeader2;
     private javax.swing.JTextField nameText;
     private javax.swing.JTextField productQtnt;
     private javax.swing.JTextField quantityText;
     private javax.swing.JTextField searchProduct;
-    private javax.swing.JTextField searchSupll;
-    private javax.swing.JTextField uniteProdText;
     // End of variables declaration//GEN-END:variables
 }

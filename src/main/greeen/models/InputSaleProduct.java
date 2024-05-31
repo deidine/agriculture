@@ -19,7 +19,8 @@ public class InputSaleProduct {
 
     @Column(name = "image_produit")
     private String imageProduit;
-
+    @Column(name = "type", nullable = false)
+    private String type;
     @Column(name = "unite", nullable = false)
     private String unite;
 
