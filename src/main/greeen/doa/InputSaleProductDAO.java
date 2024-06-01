@@ -1,7 +1,6 @@
 package greeen.doa;
 
 import greeen.config.HibrnateUtils;
-import greeen.models.InputPurchaseProduct;
 import greeen.models.InputSaleProduct; 
 import org.hibernate.Session;
 import org.hibernate.Transaction;

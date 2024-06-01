@@ -25,7 +25,7 @@ public class InputPurchaseProduct {
     private String nomProduit;
 
     @Column(name = "quantite", nullable = false)
-    private Integer quantite;  
+    private double quantite;  
     @Column(name = "unite", nullable = false)
     private String unite;
     @Column(name = "type", nullable = false)
@@ -36,6 +36,5 @@ public class InputPurchaseProduct {
     private LocalDate dateExpiration;  
     @Column(name = "utilisation",length = 122222)
     private String utilisation;
-
- 
+  
 }

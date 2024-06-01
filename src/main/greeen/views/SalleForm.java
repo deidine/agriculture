@@ -21,6 +21,7 @@ import greeen.doa.ProductDAO;
 import greeen.models.Category;
 import greeen.models.InputSaleProduct;
 import greeen.models.Product;
+import greeen.utils.UnitConverter;
 
 /**
  *
@@ -36,6 +37,7 @@ public class SalleForm extends javax.swing.JDialog {
 
     Date tanggal = new Date();
     Date dates = new Date();
+    String unite;
 
     /**
      * Creates new form PurchaseForm
@@ -470,19 +472,23 @@ public class SalleForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "il vaut remplis toute les chapms .");
         else {
             salleProduct.setTypeProduit( categoryText.getText() );
-            
-            salleProduct.setQuantite(Integer.parseInt(quantityText.getText()));
+            salleProduct.setQuantite(Double.parseDouble(quantityText.getText()));
+
             salleProduct.setImageProduit(image.getText());
           salleProduct.setUnite(jComboBUnite.getSelectedItem().toString());
-         
-            int newQunt = 0;
+        //  biometicl engennerie;
+            double newQunt = 0;
             if( type.equals("vente")){
-               newQunt= Integer.parseInt(productQtnt.getText())- Integer.parseInt(quantityText.getText());
-               salleProduct.setType("vente"); 
+                newQunt = Double.parseDouble(productQtnt.getText()) - 
+                UnitConverter.convert(Double.parseDouble(quantityText.getText()), salleProduct.getUnite(), 
+               this.unite);
+                 salleProduct.setType("vente"); 
 
             }else{
-               newQunt= Integer.parseInt(productQtnt.getText())+ Integer.parseInt(quantityText.getText());
-               salleProduct.setType("input"); 
+                newQunt = Double.parseDouble(productQtnt.getText()) + 
+                UnitConverter.convert(Double.parseDouble(quantityText.getText()), salleProduct.getUnite(), 
+               this.unite);
+                 salleProduct.setType("input"); 
             }
 
             salleProductdoa.save(salleProduct);
@@ -524,7 +530,8 @@ public class SalleForm extends javax.swing.JDialog {
                     1).toString());
          categoryText.setText(listProds.getValueAt(jTableProduct.getSelectedRow(),
                     3).toString());
-
+                    this.unite=listProds.getValueAt(jTableProduct.getSelectedRow(),
+                    4).toString();
         } else {
             JOptionPane.showMessageDialog(null, "il veut selectionner un produit dans le   table");
 
@@ -593,12 +600,13 @@ public class SalleForm extends javax.swing.JDialog {
             laporan.addColumn("nom produit");
             laporan.addColumn("quentite");
 laporan.addColumn("categories");
+            laporan.addColumn("unite");
             laporan.getDataVector().removeAllElements();
             laporan.fireTableDataChanged();
             laporan.setRowCount(0);
             for (Product product : allProd) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() });
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie(),product.getMainUnit() });
             }
 
             jTableProduct.setModel(laporan);
@@ -626,10 +634,11 @@ laporan.addColumn("categories");
             laporan.addColumn("Quantité");
    laporan.addColumn("categories");
 
+               laporan.addColumn("unite");
             // Add filtered products to the model
             for (Product product : filteredProducts) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() });
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() ,product.getMainUnit()});
             }
 
             jTableProduct.setModel(laporan);

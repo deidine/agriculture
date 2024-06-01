@@ -15,11 +15,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import greeen.doa.CategoryDAO;
 import greeen.doa.InputPurchaseProductDAO;
 import greeen.doa.ProductDAO;
+import greeen.doa.UserDAO;
 import greeen.utils.ProductTable;
 import greeen.utils.PurcahseTable;
 import greeen.utils.SalleTable;
+import greeen.utils.UserTable;
 
 /**
  *
@@ -29,10 +32,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private static int counterPagination = 0;
     int limitPagination = 20;
-    
-    PurcahseTable prchtb; 
-
-    ProductTable prtbl = new ProductTable();
+     
+    ProductTable prtbl = new ProductTable("none");
+    UserTable usertbl = new UserTable();
     
     
     /**
@@ -81,16 +83,34 @@ public class Dashboard extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator11 = new javax.swing.JSeparator();
+        sallePAge1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollTabelTransaksi9 = new javax.swing.JScrollPane();
         tabelProduit = new javax.swing.JTable();
+        panelFournisseur = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jScrollTabelTransaksi13 = new javax.swing.JScrollPane();
+        tabelUser = new javax.swing.JTable();
+        addUser = new javax.swing.JButton();
+        sallePAge = new javax.swing.JButton();
+        deleteUser = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        serchUser = new javax.swing.JTextField();
+        jSeparator18 = new javax.swing.JSeparator();
+        jSeparator19 = new javax.swing.JSeparator();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        deleteCategory = new javax.swing.JButton();
+        addCategory = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        sallePAge2 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollTabelTransaksi10 = new javax.swing.JScrollPane();
+        tabelCatery = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTabbedPane1.setBackground(new java.awt.Color(0, 153, 153));
-        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        jPanel5.setBackground(new java.awt.Color(204, 255, 255));
 
         serchProduct.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -170,6 +190,17 @@ public class Dashboard extends javax.swing.JFrame {
         jSeparator11.setForeground(new java.awt.Color(102, 102, 0));
         jSeparator11.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        sallePAge1.setBackground(new java.awt.Color(0, 204, 255));
+        sallePAge1.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        sallePAge1.setForeground(new java.awt.Color(255, 255, 255));
+        sallePAge1.setText("Retour");
+        sallePAge1.setBorderPainted(false);
+        sallePAge1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sallePAge1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -182,7 +213,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(deleteProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sallePAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(prevProduct)
@@ -198,22 +231,27 @@ public class Dashboard extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(deleteProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator3)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(prevProduct)
-                        .addComponent(nextProduct)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(editProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(addProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(serchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(prevProduct)
+                            .addComponent(nextProduct))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(editProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addProduit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sallePAge1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(serchProduct)
         );
 
         tabelProduit.setIntercellSpacing(new java.awt.Dimension(10, 5));
@@ -226,7 +264,9 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollTabelTransaksi9, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollTabelTransaksi9))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,22 +285,252 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Les Produits", jPanel3);
 
+        tabelUser.setIntercellSpacing(new java.awt.Dimension(10, 5));
+        tabelUser.setOpaque(true);
+        tabelUser.setRowHeight(30);
+        tabelUser.getTableHeader().setReorderingAllowed(false);
+        jScrollTabelTransaksi13.setViewportView(tabelUser);
+
+        addUser.setBackground(new java.awt.Color(51, 255, 51));
+        addUser.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        addUser.setForeground(new java.awt.Color(51, 0, 51));
+        addUser.setText("Ajouter");
+        addUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserActionPerformed(evt);
+            }
+        });
+
+        sallePAge.setBackground(new java.awt.Color(0, 204, 255));
+        sallePAge.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        sallePAge.setForeground(new java.awt.Color(255, 255, 255));
+        sallePAge.setText("Retour");
+        sallePAge.setBorderPainted(false);
+        sallePAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sallePAgeActionPerformed(evt);
+            }
+        });
+
+        deleteUser.setBackground(new java.awt.Color(255, 51, 51));
+        deleteUser.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        deleteUser.setForeground(new java.awt.Color(51, 51, 0));
+        deleteUser.setText("suprimer");
+        deleteUser.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(102, 102, 0), new java.awt.Color(153, 153, 0)));
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        jLabel11.setText("Chercher");
+
+        serchUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                serchUserKeyReleased(evt);
+            }
+        });
+
+        jSeparator18.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator18.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator19.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator19.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollTabelTransaksi13, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addUser)
+                .addGap(126, 126, 126)
+                .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(sallePAge, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel11)
+                .addGap(27, 27, 27)
+                .addComponent(serchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 72, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(deleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(serchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addComponent(addUser, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sallePAge))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollTabelTransaksi13, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
+        );
+
+        javax.swing.GroupLayout panelFournisseurLayout = new javax.swing.GroupLayout(panelFournisseur);
+        panelFournisseur.setLayout(panelFournisseurLayout);
+        panelFournisseurLayout.setHorizontalGroup(
+            panelFournisseurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1060, Short.MAX_VALUE)
+            .addGroup(panelFournisseurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelFournisseurLayout.setVerticalGroup(
+            panelFournisseurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 662, Short.MAX_VALUE)
+            .addGroup(panelFournisseurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelFournisseurLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Vendeur/Utulisateur", panelFournisseur);
+
+        deleteCategory.setBackground(new java.awt.Color(255, 51, 51));
+        deleteCategory.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        deleteCategory.setForeground(new java.awt.Color(51, 51, 0));
+        deleteCategory.setText("suprimer");
+        deleteCategory.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(102, 102, 0), new java.awt.Color(153, 153, 0)));
+        deleteCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCategoryActionPerformed(evt);
+            }
+        });
+
+        addCategory.setBackground(new java.awt.Color(51, 255, 51));
+        addCategory.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        addCategory.setForeground(new java.awt.Color(51, 0, 51));
+        addCategory.setText("Ajouter");
+        addCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCategoryActionPerformed(evt);
+            }
+        });
+
+        jSeparator4.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator5.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator12.setForeground(new java.awt.Color(102, 102, 0));
+        jSeparator12.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        sallePAge2.setBackground(new java.awt.Color(0, 204, 255));
+        sallePAge2.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        sallePAge2.setForeground(new java.awt.Color(255, 255, 255));
+        sallePAge2.setText("Retour");
+        sallePAge2.setBorderPainted(false);
+        sallePAge2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sallePAge2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(addCategory)
+                .addGap(126, 126, 126)
+                .addComponent(deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115)
+                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sallePAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(386, 386, 386))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator4)
+                    .addComponent(jSeparator5)
+                    .addComponent(deleteCategory, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sallePAge2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabelCatery.setIntercellSpacing(new java.awt.Dimension(10, 5));
+        tabelCatery.setOpaque(true);
+        tabelCatery.setRowHeight(30);
+        tabelCatery.getTableHeader().setReorderingAllowed(false);
+        jScrollTabelTransaksi10.setViewportView(tabelCatery);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollTabelTransaksi10))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addComponent(jScrollTabelTransaksi10, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Les Categories", jPanel4);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jTabbedPane1)
-                .addGap(17, 17, 17))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,21 +634,85 @@ public class Dashboard extends javax.swing.JFrame {
         loadSearchDataProduct(text);
         // TODO add your handling code here:
     }//GEN-LAST:event_serchProductKeyReleased
+
+    private void deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteCategoryActionPerformed
+
+    private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
+  new CategoryForm(false,true,null);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addCategoryActionPerformed
+ 
+    private void sallePAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sallePAge1ActionPerformed
+retour();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sallePAge1ActionPerformed
+
+    private void sallePAge2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sallePAge2ActionPerformed
+retour();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sallePAge2ActionPerformed
 private String getCureentTime() {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dates = new Date();
-
+ 
         return dateFormat.format(dates);
 
     }
+
+
+    private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        if (tabelUser.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "SLV slectionner un line dans le table pour le suprimer.");
+        } else {
+            int opt = JOptionPane.showConfirmDialog(
+                    this,
+                    "tu es sure de suprimer le vendeur?",
+                    "Confirmation",
+                    JOptionPane.YES_NO_OPTION);
+            if (opt == JOptionPane.YES_OPTION) {
+
+                String id = tabelUser.getValueAt(tabelUser.getSelectedRow(), 0).toString();
+                new UserDAO().deleteUserDAO(Integer.parseInt(id));
+                refrech();
+                try {
+                    loadData();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }        // TODO add your handling code here:        // TODO add your handling code here:
+    }                                          
+
+    private void serchUserKeyReleased(java.awt.event.KeyEvent evt) {                                      
+        String text = serchUser.getText();
+        loadSearchDataUser(text);      // TODO add your handling code here:        // TODO add your handling code here:
+    }                                     
+
+    private void editUser2ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+    }                                         
+
+    private void editUser2KeyPressed(java.awt.event.KeyEvent evt) {                                     
+        // TODO add your handling code here:
+    }                                    
+    private void addUserActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        new Userform(false, true, null);
+refrech();
+        // TODO add your handling code here:
+      }   
     private void loadData() throws SQLException {
  
         // loans table
         // tabelLouee.setModel(lntbl.generateTable());
         // product table
-        tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination));
-       }
+        tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination)); 
+        tabelUser.setModel(usertbl.generateTable(limitPagination, counterPagination)); 
+        tabelCatery.setModel(prtbl.generateCategoriesTable());
+    }
 
     public void loadSearchDataProduct(String text) {
         try {
@@ -387,6 +721,25 @@ private String getCureentTime() {
             throwables.printStackTrace();
         }
 
+    }
+
+    public void loadSearchDataUser(String text) {
+        try {
+            UserDAO usererDAO = new UserDAO();
+            tabelUser.setModel(usererDAO.buildTableModel(usererDAO.getUserSearch(text)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void sallePAgeActionPerformed(java.awt.event.ActionEvent evt) {                                          
+retour();
+                    
+        // TODO add your handling code here:        // TODO add your handling code here:
+            }     
+    private void retour() {
+    new FristPage(username).setVisible(true);
+        dispose();
+     
     }
 
     public void loadSearchDataPurchase(String text) {
@@ -410,22 +763,45 @@ private String getCureentTime() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCategory;
     private javax.swing.JButton addProduit;
+    private javax.swing.JButton addUser;
+    private javax.swing.JButton deleteCategory;
     private javax.swing.JButton deleteProduit;
+    private javax.swing.JButton deleteUser;
     private javax.swing.JButton editProduit;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollTabelTransaksi10;
+    private javax.swing.JScrollPane jScrollTabelTransaksi13;
     private javax.swing.JScrollPane jScrollTabelTransaksi9;
     private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton nextProduct;
+    private javax.swing.JPanel panelFournisseur;
     private javax.swing.JButton prevProduct;
+    private javax.swing.JButton sallePAge;
+    private javax.swing.JButton sallePAge1;
+    private javax.swing.JButton sallePAge2;
     private javax.swing.JTextField serchProduct;
+    private javax.swing.JTextField serchUser;
+    private javax.swing.JTable tabelCatery;
     private javax.swing.JTable tabelProduit;
+    private javax.swing.JTable tabelUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,9 +31,7 @@ public class User {
 
     @Column(name = "usertype")
     private String userType;
-
-    @Column(name = "canLoan")
-    private String canLoan;
+ 
 
     // Getters and setters...
 }

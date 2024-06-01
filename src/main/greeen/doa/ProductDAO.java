@@ -2,6 +2,7 @@ package greeen.doa;
 
 import greeen.config.HibrnateUtils;
 import greeen.models.Product;
+import greeen.utils.UnitConverter;
 
 import org.hibernate.Session;
 import org.hibernate.SharedSessionContract;
@@ -164,7 +165,7 @@ public class ProductDAO {
     }
 
     // Method to fetch current stock from the database
-    public int currentStock(String code) {
+    public double currentStock(String code) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             Product product = session.get(Product.class, code);
             return product != null ? product.getQuantityPurchase() : 0;
@@ -212,13 +213,16 @@ public class ProductDAO {
         }
     }
 
-    public void updatePurchaseQuantite(int newQuntyt,String code) {
+    public void updatePurchaseQuantite(double newQuntyt,String code) {
     
         Transaction transaction = null;
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Product product = session.get(Product.class, code );
               product.setQuantityPurchase(newQuntyt);
+                //  double convertedQuantity = UnitConverter.toMainUnit(product.getQuantity(), purchaseProduct.getUnit(), product.getMainUnit());
+                product.setQuantityPurchase(newQuntyt);
+               
                  session.update(product);
               transaction.commit();
         } catch (Exception e) {
@@ -228,7 +232,7 @@ public class ProductDAO {
             e.printStackTrace();
         }
     }
-    public void updateSalleQuantity(int newQuntyt,String code) {
+    public void updateSalleQuantity(double newQuntyt,String code) {
     
         Transaction transaction = null;
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {

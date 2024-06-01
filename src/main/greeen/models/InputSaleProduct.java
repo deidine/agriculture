@@ -25,5 +25,5 @@ public class InputSaleProduct {
     private String unite;
 
     @Column(name = "quantite", nullable = false)
-    private Integer quantite;
+    private double quantite;
 }

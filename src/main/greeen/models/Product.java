@@ -17,7 +17,8 @@ public class Product {
 
     private String productname; 
     private String categorie;
-    private int quantityPurchase;
-    private int quantitySalle;
+    private double quantityPurchase;
+    private double quantitySalle;
+    private String mainUnit;          // Main unit of measurement (e.g., "g" for grams)
 
 }

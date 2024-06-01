@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 
 import greeen.config.HibrnateUtils;
 import greeen.dto.UserDTO;
+import greeen.models.InputPurchaseProduct;
 import greeen.models.User;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class UserDAO {
         }
     }
 
-    public void addUserDAO(UserDTO userDTO, String userType, String canLoan) {
+    public void addUserDAO(UserDTO userDTO, String userType ) {
         Transaction transaction = null;
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -46,7 +47,7 @@ public class UserDAO {
             if (query.uniqueResult() != null) {
                 JOptionPane.showMessageDialog(null, "l'utilisateur est deja existe");
             } else {
-                addFunction(userDTO, userType, canLoan);
+                addFunction(userDTO, userType);
             }
 
             transaction.commit();
@@ -58,7 +59,7 @@ public class UserDAO {
         }
     }
 
-    public void addFunction(UserDTO userDTO, String userType, String canLoan) {
+    public void addFunction(UserDTO userDTO, String userType) {
         Transaction transaction = null;
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -70,8 +71,7 @@ public class UserDAO {
             user.setUsername(userDTO.getUsername());
             user.setPassword(userDTO.getPassword());
             user.setUserType(userDTO.getUserType());
-            user.setCanLoan(canLoan);
-
+           
             session.save(user);
 
             if ("ADMINISTRATOR".equals(userType)) {
@@ -144,12 +144,34 @@ public class UserDAO {
             return null;
         }
     }
-
+      public List<User> getQueryResult(int limit, int offset ) {
+        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+            Query<User> query = session.createQuery("FROM User ", User.class);
+             query.setFirstResult(offset);
+            query.setMaxResults(limit);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public User getUserDAO(String username) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             String hql = "FROM User u WHERE u.username = :username";
             Query<User> query = session.createQuery(hql, User.class);
             query.setParameter("username", username);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public User login(String username,String password) {
+        try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
+            String hql = "FROM User WHERE username = :username and password=:password";
+            Query<User> query = session.createQuery(hql, User.class);
+            query.setParameter("username", username);
+            query.setParameter("password", password);
             return query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -240,7 +262,7 @@ public class UserDAO {
             vector.add(user.getUsername());
             vector.add(user.getPassword());
             vector.add(user.getUserType());
-            vector.add(user.getCanLoan());
+
             data.add(vector);
         }
         return new DefaultTableModel(data, columnNames);

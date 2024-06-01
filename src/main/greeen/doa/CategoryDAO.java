@@ -10,11 +10,13 @@ import java.util.List;
 public class CategoryDAO {
 
     // Create a new Category
+    @SuppressWarnings("deprecation")
     public void save(Category category) {
         Transaction transaction = null;
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.save(category);
+            
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

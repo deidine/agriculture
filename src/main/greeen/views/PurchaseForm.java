@@ -15,6 +15,7 @@ import greeen.doa.InputPurchaseProductDAO;
 import greeen.doa.ProductDAO;
 import greeen.models.InputPurchaseProduct;
 import greeen.models.Product;
+import greeen.utils.UnitConverter;
 
 /**
  *
@@ -27,7 +28,7 @@ public class PurchaseForm extends javax.swing.JDialog {
     int quantity;
     String prodCode = null;
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+String unite;
     Date tanggal = new Date();
     Date dates = new Date();
 
@@ -494,22 +495,26 @@ public class PurchaseForm extends javax.swing.JDialog {
             purchaseProduct.setCategorieProduit(categoryText.getText());
             purchaseProduct.setNomProduit(nameText.getText());
             purchaseProduct.setDateExpiration(LocalDate.now().plusDays(30));
-            purchaseProduct.setQuantite(Integer.parseInt(quantityText.getText()));
+            purchaseProduct.setQuantite(Double.parseDouble(quantityText.getText()));
             purchaseProduct.setUtilisation(utilusationTexta.getText());
             purchaseProduct.setUnite(jComboBUnite.getSelectedItem().toString());
          
          
-            int newQunt = 0;
+            double newQunt = 0;
             if( type.equals("achat")){
-               newQunt= Integer.parseInt(productQtnt.getText()) + Integer.parseInt(quantityText.getText());
-               purchaseProduct.setType("achat"); 
-
+                purchaseProduct.setType("achat"); 
+                newQunt = Double.parseDouble(productQtnt.getText()) + 
+                UnitConverter.convert(Double.parseDouble(quantityText.getText()), purchaseProduct.getUnite(), 
+               this.unite);
+                
             }else{
-               newQunt= Integer.parseInt(productQtnt.getText())- Integer.parseInt(quantityText.getText());
+                newQunt = Double.parseDouble(productQtnt.getText()) - UnitConverter.convert(Double.parseDouble(quantityText.getText()), purchaseProduct.getUnite(), this.unite);
+                
+                //    newQunt= Double.parseDouble(productQtnt.getText())- Double.parseDouble(quantityText.getText());
                purchaseProduct.setType("output"); 
             }
             purchaseProduct.setDateAchat(LocalDate.now());
-
+// ,jComboBUnite.getSelectedItem().toString()
             purchaseProductdoa.save(purchaseProduct);
             prdDao.updatePurchaseQuantite(newQunt,  codeText.getText()) ;
             this.inisialiser();
@@ -542,7 +547,8 @@ public class PurchaseForm extends javax.swing.JDialog {
                     1).toString());
                     categoryText.setText(listProds.getValueAt(jTableProduct.getSelectedRow(),
                     3).toString());
-
+this.unite=listProds.getValueAt(jTableProduct.getSelectedRow(),
+4).toString();
         } else {
             JOptionPane.showMessageDialog(null, "il veut selectionner un produit dans le   table");
 
@@ -604,13 +610,14 @@ public class PurchaseForm extends javax.swing.JDialog {
             laporan.addColumn("nom produit");
             laporan.addColumn("quentite");
             laporan.addColumn("categories");
+            laporan.addColumn("unite");
 
             laporan.getDataVector().removeAllElements();
             laporan.fireTableDataChanged();
             laporan.setRowCount(0);
             for (Product product : allProd) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantityPurchase() , product.getCategorie() });
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantityPurchase() , product.getCategorie(),product.getMainUnit() });
             }
 
             jTableProduct.setModel(laporan);
@@ -639,11 +646,12 @@ public class PurchaseForm extends javax.swing.JDialog {
             laporan.addColumn("Nom Produit");
             laporan.addColumn("Quantité");
             laporan.addColumn("categories");
+            laporan.addColumn("unite");
 
             // Add filtered products to the model
             for (Product product : filteredProducts) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantityPurchase()  , product.getCategorie()});
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantityPurchase()  , product.getCategorie(),product.getMainUnit() });
             }
 
             jTableProduct.setModel(laporan);

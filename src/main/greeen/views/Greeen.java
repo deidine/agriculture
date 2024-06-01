@@ -1,6 +1,7 @@
 package greeen.views; 
 
 import greeen.config.HibrnateUtils;
+import greeen.doa.UserDAO;
 import greeen.dto.UserDTO; 
 import java.time.LocalDateTime;
 import javax.swing.ImageIcon; 
@@ -24,6 +25,7 @@ public class Greeen extends javax.swing.JFrame {
      */
     public Greeen() {
         initComponents();
+
         userDTO = new UserDTO();
         // Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         // int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
@@ -279,8 +281,12 @@ public class Greeen extends javax.swing.JFrame {
         String username = txtFieldUsername.getText();
         String password = txtPass.getText();
         userRole = (String) userType.getSelectedItem();
-        new FristPage(username).setVisible(true);
-      dispose();
+        System.out.println(new UserDAO().login(username,password).toString());
+        if  (new UserDAO().login(username,password)!=null){
+          new FristPage(username).setVisible(true);
+
+          dispose();
+      }
 //         if (new ConnectionFactory().checkLogin(username, password, userRole)) {
 //             inTime = LocalDateTime.now();
 //             userDTO.setInTime(String.valueOf(inTime));
