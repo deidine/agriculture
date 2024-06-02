@@ -19,6 +19,7 @@ import greeen.doa.CategoryDAO;
 import greeen.doa.InputPurchaseProductDAO;
 import greeen.doa.ProductDAO;
 import greeen.doa.UserDAO;
+import greeen.utils.ImageRenderer;
 import greeen.utils.ProductTable;
 import greeen.utils.PurcahseTable;
 import greeen.utils.SalleTable;
@@ -712,6 +713,8 @@ refrech();
         tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination)); 
         tabelUser.setModel(usertbl.generateTable(limitPagination, counterPagination)); 
         tabelCatery.setModel(prtbl.generateCategoriesTable());
+
+        tabelProduit.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
     }
 
     public void loadSearchDataProduct(String text) {

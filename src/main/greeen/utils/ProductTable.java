@@ -57,7 +57,7 @@ String type;
      
     }
     else{
-        return new String[] { "Code_Produit", "Nom_Produit",   "Categorie"  };
+        return new String[] { "Code_Produit", "Nom_Produit",   "Categorie","image"  };
     
     }
     }
@@ -120,6 +120,7 @@ return ROWS;
             ROWS[i][0] = product.getProductcode();
             ROWS[i][1] = product.getProductname(); 
             ROWS[i][2] = product.getCategorie() ;
+            ROWS[i][3] = product.getImageProduit() ;
         }
     }
         return ROWS;

@@ -263,7 +263,7 @@ String unite;
         utilusationTexta.setRows(5);
         jScrollPane3.setViewportView(utilusationTexta);
 
-        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "G", "Litre","M","Cm" }));
+        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "Litre","M"  }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

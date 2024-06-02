@@ -16,9 +16,12 @@ public class InputSaleProduct {
 
     @Column(name = "type_produit", nullable = false)
     private String typeProduit;
-
+    // @Lob
+    // @Column(name = "image_produit")
+    // private byte[] imageProduit;
     @Column(name = "image_produit")
     private String imageProduit;
+
     @Column(name = "type", nullable = false)
     private String type;
     @Column(name = "unite", nullable = false)

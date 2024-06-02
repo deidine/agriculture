@@ -12,12 +12,20 @@ import greeen.doa.CategoryDAO;
 import greeen.doa.ProductDAO;
 import greeen.models.Category;
 import greeen.models.Product;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author deidine
  */
 public class ProductForm extends javax.swing.JDialog {
+   private File selectedFile;
     Product productDTO;
     String username = null;
     String supplier = null;
@@ -80,6 +88,7 @@ public class ProductForm extends javax.swing.JDialog {
         jComboCategries = new javax.swing.JComboBox<>();
         jComboBUnite = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
+        selctImge = new javax.swing.JButton();
 
         labelHeader.setFont(new java.awt.Font("Engravers MT", 1, 18)); // NOI18N
         labelHeader.setText("Formulaire du Produit");
@@ -156,10 +165,25 @@ public class ProductForm extends javax.swing.JDialog {
 
         jComboCategries.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "G", "Litre","M","Cm" }));
+        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "Litre","M"  }));
 
         jLabel10.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel10.setText("unite");
+
+        selctImge.setBackground(new java.awt.Color(0, 255, 0));
+        selctImge.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        selctImge.setText("SELECT IMAGE");
+        selctImge.setBorderPainted(false);
+        selctImge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selctImgeActionPerformed(evt);
+            }
+        });
+        selctImge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                selctImgeKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,6 +221,10 @@ public class ProductForm extends javax.swing.JDialog {
                                             .addComponent(jComboBUnite, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(selctImge, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +239,9 @@ public class ProductForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(selctImge, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -230,7 +260,59 @@ public class ProductForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void selctImgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selctImgeActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(jLabel6);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            selectedFile = fileChooser.getSelectedFile();
+            //                    imageLabel.setText(selectedFile.getName());
+        }
+
+        //
+        //                JFileChooser fileChooser = new JFileChooser();
+        //                int result = fileChooser.showOpenDialog(jLabel7);
+        //                if (result == JFileChooser.APPROVE_OPTION) {
+            //                    File selectedFile = fileChooser.getSelectedFile();
+            //                    // imageLabel.setText(selectedFile.getName());
+            //                    try {
+                //                        imageBytes = Files.readAllBytes(selectedFile.toPath());
+                //                    } catch (IOException ex) {
+                //                        ex.printStackTrace();
+                //                    }
+            //                }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selctImgeActionPerformed
+
+    private void selctImgeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_selctImgeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selctImgeKeyPressed
+
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addButtonActionPerformed
+      
+        if (selectedFile == null) {
+            JOptionPane.showMessageDialog(jLabel6, "No image selected");
+            return;
+        }
+
+        // Define the directory to save images
+        String imagesDir = "images/";
+        File dir = new File(imagesDir);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Copy the selected file to the directory
+        Path destinationPath = new File(imagesDir + selectedFile.getName()).toPath();
+        try {
+            Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(jLabel6, "Failed to save image");
+            return;
+        }
+
+
         productDTO = new Product();
         if (nameText.getText().equals(""))
             JOptionPane.showMessageDialog(null, "il vaut remplis toute les chapms pour terminer l'operation.");
@@ -239,6 +321,7 @@ public class ProductForm extends javax.swing.JDialog {
             productDTO.setProductname(nameText.getText());
             productDTO.setQuantityPurchase(0); 
             productDTO.setQuantitySalle(0); 
+            productDTO.setImageProduit(destinationPath.toString());
              productDTO.setCategorie(jComboCategries.getSelectedItem().toString());
              productDTO.setMainUnit(jComboBUnite.getSelectedItem().toString());
             new ProductDAO().addProductDAO(productDTO);
@@ -324,6 +407,7 @@ public class ProductForm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel labelHeader;
     private javax.swing.JTextField nameText;
+    protected javax.swing.JButton selctImge;
     // End of variables declaration//GEN-END:variables
 
 }

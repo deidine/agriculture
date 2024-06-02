@@ -20,5 +20,5 @@ public class Product {
     private double quantityPurchase;
     private double quantitySalle;
     private String mainUnit;          // Main unit of measurement (e.g., "g" for grams)
-
+    private String imageProduit;
 }

@@ -1,8 +1,14 @@
 package greeen.views;
 
- 
+  
 import javax.swing.JOptionPane;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -12,7 +18,10 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 import greeen.doa.CategoryDAO;
@@ -28,13 +37,13 @@ import greeen.utils.UnitConverter;
  * @author deidine
  */
 public class SalleForm extends javax.swing.JDialog {
-
+    String imagePath ; 
     String username = null;
     String supplier = null;
     int quantity;
     String prodCode = null;
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+    private byte[] imageBytes;
     Date tanggal = new Date();
     Date dates = new Date();
     String unite;
@@ -79,10 +88,9 @@ public class SalleForm extends javax.swing.JDialog {
         productQtnt = new javax.swing.JTextField();
         nameText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        image = new javax.swing.JTextArea();
         quantityText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         categoryText = new javax.swing.JTextField();
@@ -158,10 +166,6 @@ public class SalleForm extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        image.setColumns(20);
-        image.setRows(5);
-        jScrollPane3.setViewportView(image);
-
         quantityText.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         quantityText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +175,8 @@ public class SalleForm extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel5.setText("Quantite:");
+
+        jLabel3.setText(" ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -182,29 +188,28 @@ public class SalleForm extends javax.swing.JDialog {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quantityText)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(105, 105, 105)
                         .addComponent(jLabel7))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel4.setBackground(new java.awt.Color(102, 102, 0));
@@ -240,7 +245,7 @@ public class SalleForm extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "G", "Litre","M","Cm" }));
+        jComboBUnite.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tone", "Kg", "Litre","M" }));
 
         jLabel11.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel11.setText("unite");
@@ -464,6 +469,7 @@ public class SalleForm extends javax.swing.JDialog {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
+      
         InputSaleProduct salleProduct = new InputSaleProduct();
         ProductDAO prdDao = new ProductDAO();
         InputSaleProductDAO salleProductdoa = new InputSaleProductDAO();
@@ -474,7 +480,7 @@ public class SalleForm extends javax.swing.JDialog {
             salleProduct.setTypeProduit( categoryText.getText() );
             salleProduct.setQuantite(Double.parseDouble(quantityText.getText()));
 
-            salleProduct.setImageProduit(image.getText());
+            salleProduct.setImageProduit(imagePath); 
           salleProduct.setUnite(jComboBUnite.getSelectedItem().toString());
         //  biometicl engennerie;
             double newQunt = 0;
@@ -532,6 +538,13 @@ public class SalleForm extends javax.swing.JDialog {
                     3).toString());
                     this.unite=listProds.getValueAt(jTableProduct.getSelectedRow(),
                     4).toString();
+
+                    
+              imagePath = (String) listProds.getValueAt(jTableProduct.getSelectedRow(),
+            5).toString();
+            ImageIcon imageIcon = new ImageIcon(imagePath);
+            Image image = imageIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
+            jLabel3.setIcon(new ImageIcon(image));
         } else {
             JOptionPane.showMessageDialog(null, "il veut selectionner un produit dans le   table");
 
@@ -567,7 +580,7 @@ public class SalleForm extends javax.swing.JDialog {
         nameText.setText("");
         // useDateText.setText("");
         codeText.setText("");
-        image.setText(""); 
+  
         quantityText.setText("");
         // dateText.setDate( );
     }
@@ -601,12 +614,14 @@ public class SalleForm extends javax.swing.JDialog {
             laporan.addColumn("quentite");
 laporan.addColumn("categories");
             laporan.addColumn("unite");
+            laporan.addColumn("image");
+
             laporan.getDataVector().removeAllElements();
             laporan.fireTableDataChanged();
             laporan.setRowCount(0);
             for (Product product : allProd) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie(),product.getMainUnit() });
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie(),product.getMainUnit(),product.getImageProduit() });
             }
 
             jTableProduct.setModel(laporan);
@@ -635,10 +650,11 @@ laporan.addColumn("categories");
    laporan.addColumn("categories");
 
                laporan.addColumn("unite");
+               laporan.addColumn("image");
             // Add filtered products to the model
             for (Product product : filteredProducts) {
                 laporan.addRow(
-                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() ,product.getMainUnit()});
+                        new Object[] { product.getProductcode(), product.getProductname(), product.getQuantitySalle(), product.getCategorie() ,product.getMainUnit(),product.getImageProduit()});
             }
 
             jTableProduct.setModel(laporan);
@@ -653,11 +669,11 @@ laporan.addColumn("categories");
     private javax.swing.JTextField categoryText;
     private javax.swing.JButton clearButton;
     private javax.swing.JTextField codeText;
-    private javax.swing.JTextArea image;
     private javax.swing.JComboBox<String> jComboBUnite;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -669,7 +685,6 @@ laporan.addColumn("categories");
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableProduct;
     private javax.swing.JLabel labelHeader1;
     private javax.swing.JLabel labelHeader2;
