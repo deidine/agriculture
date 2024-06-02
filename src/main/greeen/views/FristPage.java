@@ -4,8 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat; 
 import java.util.Date; 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame; 
-   
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import greeen.raport.Utils;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent; 
 /**
@@ -65,8 +68,10 @@ public final class FristPage extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         btnCaisse = new javax.swing.JButton();
-        btnSalle3 = new javax.swing.JButton();
         btnSalle4 = new javax.swing.JButton();
+        btnSalle5 = new javax.swing.JButton();
+        btnSalle3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBarInfoPengembang = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuLogout = new javax.swing.JMenuItem();
@@ -125,18 +130,6 @@ public final class FristPage extends javax.swing.JFrame {
             }
         });
 
-        btnSalle3.setBackground(new java.awt.Color(153, 0, 153));
-        btnSalle3.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
-        btnSalle3.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalle3.setText("Stock de vente");
-        btnSalle3.setBorderPainted(false);
-        btnSalle3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSalle3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalle3ActionPerformed(evt);
-            }
-        });
-
         btnSalle4.setBackground(new java.awt.Color(255, 0, 0));
         btnSalle4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         btnSalle4.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,6 +139,18 @@ public final class FristPage extends javax.swing.JFrame {
         btnSalle4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalle4ActionPerformed(evt);
+            }
+        });
+
+        btnSalle5.setBackground(new java.awt.Color(153, 0, 153));
+        btnSalle5.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        btnSalle5.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalle5.setText("Stock de vente");
+        btnSalle5.setBorderPainted(false);
+        btnSalle5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalle5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalle5ActionPerformed(evt);
             }
         });
 
@@ -160,14 +165,17 @@ public final class FristPage extends javax.swing.JFrame {
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalle2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(btnSalle3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(333, 333, 333))
+                .addGap(541, 541, 541))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(20, 20, 20)
                     .addComponent(btnSalle4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(1042, Short.MAX_VALUE)))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(652, Short.MAX_VALUE)
+                    .addComponent(btnSalle5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(323, 323, 323)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,19 +184,35 @@ public final class FristPage extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCaisse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSalle2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnSalle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalle2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(btnSalle4, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(btnSalle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
+
+        btnSalle3.setBackground(new java.awt.Color(255, 255, 0));
+        btnSalle3.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        btnSalle3.setForeground(new java.awt.Color(255, 51, 51));
+        btnSalle3.setText("Sauvgarder Les Donnees");
+        btnSalle3.setBorderPainted(false);
+        btnSalle3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalle3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalle3ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("il vaut chaque mois sauvgarder les donnees");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -198,12 +222,21 @@ public final class FristPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalle3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(600, 600, 600))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSalle3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -216,10 +249,10 @@ public final class FristPage extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         jScrollPane1.setViewportView(jPanel15);
@@ -269,7 +302,7 @@ public final class FristPage extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
         );
 
         pack();
@@ -302,8 +335,7 @@ public final class FristPage extends javax.swing.JFrame {
 
     private void btnSalle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalle3ActionPerformed
 
-        new SalleStcok(username).setVisible(true);  
-          this.dispose();    
+      backup();   
     }//GEN-LAST:event_btnSalle3ActionPerformed
 
     private void btnSalle4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalle4ActionPerformed
@@ -311,7 +343,22 @@ public final class FristPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalle4ActionPerformed
 
-    
+    private void btnSalle5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalle5ActionPerformed
+       new SalleStcok(username).setVisible(true);  
+          this.dispose();     // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalle5ActionPerformed
+
+    private void backup(){
+         JOptionPane.showMessageDialog(null, "L'operation est Terminer");
+           
+    try {
+         Utils.Backupdbtosql();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        // Logger.getLogger(DashboardSalle.class.getName()).log(Level.SEVERE, null, ex);
+    }
+     
+    }
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -319,7 +366,9 @@ public final class FristPage extends javax.swing.JFrame {
     private javax.swing.JButton btnSalle2;
     private javax.swing.JButton btnSalle3;
     private javax.swing.JButton btnSalle4;
+    private javax.swing.JButton btnSalle5;
     private javax.swing.JMenuItem infoAplikasi;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBarInfoPengembang;

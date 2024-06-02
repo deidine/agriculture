@@ -5,11 +5,17 @@
 package greeen.views;
 
 
-
-import java.sql.SQLException;
+ 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException; 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,8 +23,10 @@ import javax.swing.table.DefaultTableModel;
 
 import greeen.doa.InputPurchaseProductDAO;
 import greeen.doa.ProductDAO;
+import greeen.raport.PDFTable;
 import greeen.utils.ProductTable;
 import greeen.utils.PurcahseTable;
+import com.itextpdf.text.Phrase;
 import greeen.utils.SalleTable;
 
 /**
@@ -44,12 +52,12 @@ public class SalleStcok extends javax.swing.JFrame {
         this.username = username; 
         initComponents();
         setLocationRelativeTo(null);
-        setIconImage(new ImageIcon("resources/logo.png").getImage());
+        // setIconImage(new ImageIcon("resources/logo.png").getImage());
 
         // setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         try {
             loadData();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -81,6 +89,7 @@ public class SalleStcok extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator13 = new javax.swing.JSeparator();
         sallePAge2 = new javax.swing.JButton();
+        bntPay = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollTabelTransaksi8 = new javax.swing.JScrollPane();
         tabelSalle = new javax.swing.JTable();
@@ -189,6 +198,22 @@ public class SalleStcok extends javax.swing.JFrame {
             }
         });
 
+        bntPay.setBackground(new java.awt.Color(102, 102, 0));
+        bntPay.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntPay.setForeground(new java.awt.Color(255, 255, 255));
+        bntPay.setText("Imprimer");
+        bntPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    bntPayActionPerformed(evt);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+               
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -196,22 +221,24 @@ public class SalleStcok extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(addSalle)
                 .addGap(32, 32, 32)
-                .addComponent(deleteSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addComponent(deleteSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sallePAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(sallePAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bntPay, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addComponent(prevSalle)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nextPurchase1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(serchSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel13Layout.setVerticalGroup(
@@ -219,22 +246,28 @@ public class SalleStcok extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sallePAge2)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sallePAge2)
+                        .addComponent(bntPay))
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel13Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(serchSalle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                            .addContainerGap())
                         .addGroup(jPanel13Layout.createSequentialGroup()
                             .addGap(1, 1, 1)
                             .addComponent(addSalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel3)
                         .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(deleteSalle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(prevSalle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextPurchase1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(prevSalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nextPurchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(serchSalle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                                        .addComponent(jLabel3))))
+                            .addContainerGap()))))
         );
 
         tabelSalle.setOpaque(true);
@@ -259,7 +292,7 @@ public class SalleStcok extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -651,6 +684,34 @@ public class SalleStcok extends javax.swing.JFrame {
     private void sallePAge2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sallePAge2ActionPerformed
 retour();        // TODO add your handling code here:
     }//GEN-LAST:event_sallePAge2ActionPerformed
+
+    private void bntPayActionPerformed(java.awt.event.ActionEvent evt)   {//GEN-FIRST:event_bntPayActionPerformed
+      printToPdf();
+   
+    }//GEN-LAST:event_bntPayActionPerformed
+private void printToPdf() {
+    
+    float[] width = new float[]{20f, 30f, 30f, 40f, 20f};
+        ArrayList<String> name = new ArrayList<>();
+        name.add("NUM");
+        name.add("date");
+        name.add("cod_clt");
+        name.add("total");
+        name.add("recu"); 
+        String description = "vende table";
+
+         
+        try {
+            PDFTable.inBaoCao(description, new File("deidine.pdf"), width, getCureentTime(),
+                 name, (DefaultTableModel) tabelSalle.getModel());
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+   
+    }  
+    
+
 private String getCureentTime() {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -659,7 +720,7 @@ private String getCureentTime() {
         return dateFormat.format(dates);
 
     }
-    private void loadData() throws SQLException {
+    private void loadData() throws Exception {
         tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination));
  
    
@@ -697,7 +758,7 @@ private String getCureentTime() {
     void refrech() {
         try {
             loadData();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -711,6 +772,7 @@ private String getCureentTime() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addInput;
     private javax.swing.JButton addSalle;
+    private javax.swing.JButton bntPay;
     private javax.swing.JButton deleteInput;
     private javax.swing.JButton deleteSalle;
     private javax.swing.JLabel jLabel3;

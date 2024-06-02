@@ -84,7 +84,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel13" max="32767" attributes="0"/>
+                          <Component id="jPanel13" pref="1019" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Component id="jPanel14" alignment="0" max="32767" attributes="0"/>
@@ -110,22 +110,24 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="addSalle" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="deleteSalle" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="deleteSalle" min="-2" pref="97" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="jSeparator6" min="-2" pref="13" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="sallePAge2" min="-2" pref="169" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="sallePAge2" min="-2" pref="123" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="bntPay" min="-2" pref="148" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jSeparator7" min="-2" pref="13" max="-2" attributes="0"/>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                               <Component id="prevSalle" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="nextPurchase1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator13" min="-2" pref="13" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="serchSalle" min="-2" pref="244" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -135,24 +137,35 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="sallePAge2" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="sallePAge2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bntPay" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                          <Component id="serchSalle" pref="27" max="32767" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                      </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                           <Component id="addSalle" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jSeparator13" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="jSeparator7" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jSeparator6" alignment="1" max="32767" attributes="0"/>
                                       <Component id="deleteSalle" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="prevSalle" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="nextPurchase1" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="prevSalle" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="nextPurchase1" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jSeparator13" min="-2" pref="28" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="serchSalle" alignment="3" pref="27" max="32767" attributes="0"/>
+                                                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -311,6 +324,23 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sallePAge2ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="bntPay">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Imprimer"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntPayActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

@@ -349,8 +349,8 @@ public class Greeen extends javax.swing.JFrame {
         //     System.out.println("you are alredy runing xampp");
 
         // } else {
-        //     Process process = Runtime.getRuntime().exec("C:\\xampp\\apache_start.bat");
-        //     Process process2 = Runtime.getRuntime().exec("C:\\xampp\\mysql_start.bat");
+            Process process = Runtime.getRuntime().exec("C:\\xampp\\apache_start.bat");
+            Process process2 = Runtime.getRuntime().exec("C:\\xampp\\mysql_start.bat");
         //     System.out.println("xampp is runing");
         // }
 
