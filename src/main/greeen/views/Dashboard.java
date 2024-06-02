@@ -612,6 +612,8 @@ public class Dashboard extends javax.swing.JFrame {
             nextProduct.setEnabled(true);
         }
         tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination));
+        tabelProduit.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
+
         // TODO add your handling code here:
     }//GEN-LAST:event_prevProductActionPerformed
 
@@ -626,6 +628,7 @@ public class Dashboard extends javax.swing.JFrame {
             prevProduct.setEnabled(true);
         }
         tabelProduit.setModel(prtbl.generateTable(limitPagination, counterPagination));
+        tabelProduit.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_nextProductActionPerformed
@@ -720,6 +723,8 @@ refrech();
     public void loadSearchDataProduct(String text) {
         try {
             tabelProduit.setModel(prtbl.generateTable4Search(text));
+        tabelProduit.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
+
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }

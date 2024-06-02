@@ -187,7 +187,7 @@ public class ProductDAO {
         }
     }    public int getProductCount( ) {
         try (Session session = HibrnateUtils.getSessionFactory().openSession()) {
-            Query<Long> query = session.createQuery("SELECT COUNT(p) FROM Product ",
+            Query<Long> query = session.createQuery("SELECT COUNT(p) FROM Product p",
                     Long.class); 
             return query.uniqueResult().intValue();
         } catch (Exception e) {
