@@ -1,0 +1,9 @@
+plugins {
+    id 'application'
+}
+apply plugin: 'application'
+mainClassName = 'src.main.greeen.Green'
+println 'This is executed during configuration phase'
+task configured {
+    println 'The project is configured'
+}

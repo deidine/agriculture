@@ -19,9 +19,12 @@ import javax.swing.table.DefaultTableModel;
 
 import greeen.doa.InputPurchaseProductDAO;
 import greeen.doa.ProductDAO;
+import greeen.raport.PDFTable;
 import greeen.utils.ProductTable;
 import greeen.utils.PurcahseTable;
 import greeen.utils.SalleTable;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -57,19 +60,7 @@ public class PurchaseStock extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH); // this for full screen
         // setUndecorated(true);
         
-        this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                int opt = JOptionPane.showConfirmDialog(
-                    null,
-                    "tu es sure de suprimer?",
-                    "Confirmation",
-                    JOptionPane.YES_NO_OPTION);
-                if (opt == JOptionPane.YES_OPTION) {
-                   
-                    new FristPage(username).setVisible(true);
-                }
-            }
-        });
+      
     }
     
     /**
@@ -95,6 +86,7 @@ public class PurchaseStock extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator12 = new javax.swing.JSeparator();
         sallePAge2 = new javax.swing.JButton();
+        bntPay1 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jScrollTabelTransaksi7 = new javax.swing.JScrollPane();
         tabelIPurchase = new javax.swing.JTable();
@@ -109,6 +101,7 @@ public class PurchaseStock extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
         jSeparator14 = new javax.swing.JSeparator();
+        bntPay2 = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         jScrollTabelTransaksi10 = new javax.swing.JScrollPane();
         tabelIOutput = new javax.swing.JTable();
@@ -205,6 +198,16 @@ public class PurchaseStock extends javax.swing.JFrame {
             }
         });
 
+        bntPay1.setBackground(new java.awt.Color(102, 102, 0));
+        bntPay1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntPay1.setForeground(new java.awt.Color(255, 255, 255));
+        bntPay1.setText("Imprimer");
+        bntPay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntPay1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -214,44 +217,55 @@ public class PurchaseStock extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(deletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sallePAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(205, 205, 205)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(bntPay1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(sallePAge2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)))
                 .addComponent(prevPurchase)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nextPurchase)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(serchPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(serchPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(deletePurchase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(prevPurchase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(nextPurchase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(serchPurchase)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(serchPurchase)
+                    .addComponent(jLabel2))
                 .addGap(4, 4, 4))
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sallePAge2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bntPay1)
+                            .addComponent(prevPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(sallePAge2)
-                        .addGap(0, 6, Short.MAX_VALUE))))
+                        .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addPurchase)
+                    .addComponent(deletePurchase))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tabelIPurchase.setOpaque(true);
@@ -267,7 +281,7 @@ public class PurchaseStock extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollTabelTransaksi7, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(jScrollTabelTransaksi7, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -276,14 +290,14 @@ public class PurchaseStock extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -355,6 +369,16 @@ public class PurchaseStock extends javax.swing.JFrame {
         jSeparator14.setForeground(new java.awt.Color(102, 102, 0));
         jSeparator14.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        bntPay2.setBackground(new java.awt.Color(102, 102, 0));
+        bntPay2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntPay2.setForeground(new java.awt.Color(255, 255, 255));
+        bntPay2.setText("Imprimer");
+        bntPay2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntPay2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -365,7 +389,9 @@ public class PurchaseStock extends javax.swing.JFrame {
                 .addComponent(deletePurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(205, 205, 205)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bntPay2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(prevPurchase1)
@@ -382,16 +408,18 @@ public class PurchaseStock extends javax.swing.JFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deletePurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(serchOutput)
-                    .addComponent(addOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(prevPurchase1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nextPurchase2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bntPay2)
+                    .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel4)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(deletePurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(serchOutput)
+                        .addComponent(addOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(prevPurchase1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nextPurchase2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -705,7 +733,46 @@ public class PurchaseStock extends javax.swing.JFrame {
     private void sallePAge2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sallePAge2ActionPerformed
 retour();        // TODO add your handling code here:
     }//GEN-LAST:event_sallePAge2ActionPerformed
-private String getCureentTime() {
+
+    private void bntPay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPay1ActionPerformed
+    float[] width = new float[]{20f, 30f, 30f, 40f, 20f, 20f, 20f, 20f};
+        String description = "achetee table";
+        ArrayList<String> name = new ArrayList<>();
+
+        for (String value :  new PurcahseTable("achat").getColumns()) {
+            name.add(value);
+        }
+
+        printToPdf(  description,width,name,(DefaultTableModel) tabelIPurchase.getModel());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bntPay1ActionPerformed
+
+    private void bntPay2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPay2ActionPerformed
+         float[] width = new float[]{20f, 30f, 30f, 40f, 20f, 20f, 20f, 20f};
+        String description = "sortie table";
+        ArrayList<String> name = new ArrayList<>();
+
+        for (String value :  new  PurcahseTable("output").getColumns()) {
+            name.add(value);
+        }
+
+        printToPdf(  description,width,name,(DefaultTableModel) tabelIOutput.getModel());
+            // TODO add your handling code here:
+    }//GEN-LAST:event_bntPay2ActionPerformed
+private void printToPdf(String description,float[] width,ArrayList<String> name, DefaultTableModel table) {
+ 
+        try {
+            PDFTable.inBaoCao(description, new File("deidine.pdf"), width, getCureentTime(),
+                 name, table);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+   
+    }  
+
+    
+    private String getCureentTime() {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dates = new Date();
@@ -761,6 +828,8 @@ private String getCureentTime() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addOutput;
     private javax.swing.JButton addPurchase;
+    private javax.swing.JButton bntPay1;
+    private javax.swing.JButton bntPay2;
     private javax.swing.JButton deletePurchase;
     private javax.swing.JButton deletePurchase1;
     private javax.swing.JLabel jLabel2;

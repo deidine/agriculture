@@ -104,6 +104,7 @@ public class SalleStcok extends javax.swing.JFrame {
         jSeparator10 = new javax.swing.JSeparator();
         jSeparator15 = new javax.swing.JSeparator();
         jSeparator16 = new javax.swing.JSeparator();
+        bntPay1 = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jScrollTabelTransaksi11 = new javax.swing.JScrollPane();
         tabelInput = new javax.swing.JTable();
@@ -204,13 +205,7 @@ public class SalleStcok extends javax.swing.JFrame {
         bntPay.setText("Imprimer");
         bntPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    bntPayActionPerformed(evt);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-               
+                bntPayActionPerformed(evt);
             }
         });
 
@@ -371,6 +366,16 @@ public class SalleStcok extends javax.swing.JFrame {
         jSeparator16.setForeground(new java.awt.Color(102, 102, 0));
         jSeparator16.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        bntPay1.setBackground(new java.awt.Color(102, 102, 0));
+        bntPay1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntPay1.setForeground(new java.awt.Color(255, 255, 255));
+        bntPay1.setText("Imprimer");
+        bntPay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntPay1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -381,7 +386,9 @@ public class SalleStcok extends javax.swing.JFrame {
                 .addComponent(deleteInput, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(205, 205, 205)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bntPay1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(prevInput)
@@ -398,21 +405,23 @@ public class SalleStcok extends javax.swing.JFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(serchInput, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(addInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator15, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jSeparator10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deleteInput, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prevInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nextInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bntPay1)
+                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel17Layout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addComponent(serchInput, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                            .addContainerGap())
+                        .addGroup(jPanel17Layout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(addInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator15, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5)
+                        .addComponent(jSeparator10, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(deleteInput, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prevInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nextInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         tabelInput.setOpaque(true);
@@ -428,7 +437,7 @@ public class SalleStcok extends javax.swing.JFrame {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollTabelTransaksi11, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(jScrollTabelTransaksi11, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -686,24 +695,41 @@ retour();        // TODO add your handling code here:
     }//GEN-LAST:event_sallePAge2ActionPerformed
 
     private void bntPayActionPerformed(java.awt.event.ActionEvent evt)   {//GEN-FIRST:event_bntPayActionPerformed
-      printToPdf();
+         float[] width = new float[]{20f, 30f, 30f, 40f, 20f};
+      String description = "Entrer table";
+        ArrayList<String> name = new ArrayList<>();
+ 
+            for (String value :  new SalleTable("input").getColumns()) {
+            name.add(value);
+        }
+
+        printToPdf(  description,width,name,(DefaultTableModel) tabelSalle.getModel());
    
     }//GEN-LAST:event_bntPayActionPerformed
-private void printToPdf() {
-    
-    float[] width = new float[]{20f, 30f, 30f, 40f, 20f};
+
+    private void bntPay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPay1ActionPerformed
+       float[] width = new float[]{20f, 30f, 30f, 40f, 20f};
+      String description = "Entrer table";
         ArrayList<String> name = new ArrayList<>();
-        name.add("NUM");
-        name.add("date");
-        name.add("cod_clt");
-        name.add("total");
-        name.add("recu"); 
-        String description = "vende table";
+ 
+            for (String value :  new SalleTable("input").getColumns()) {
+            name.add(value);
+        }
+
+     
+        printToPdf(  description,width,name,(DefaultTableModel) tabelInput.getModel());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bntPay1ActionPerformed
+private void printToPdf(String description,float[] width,ArrayList<String> name, DefaultTableModel table) {
+    
+    
+   
+       
 
          
         try {
             PDFTable.inBaoCao(description, new File("deidine.pdf"), width, getCureentTime(),
-                 name, (DefaultTableModel) tabelSalle.getModel());
+                 name, table);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -773,6 +799,7 @@ private String getCureentTime() {
     private javax.swing.JButton addInput;
     private javax.swing.JButton addSalle;
     private javax.swing.JButton bntPay;
+    private javax.swing.JButton bntPay1;
     private javax.swing.JButton deleteInput;
     private javax.swing.JButton deleteSalle;
     private javax.swing.JLabel jLabel3;
